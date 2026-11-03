@@ -70,7 +70,11 @@ export function Navbar() {
   const follow = (event, id) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    setOpen(false);
+    if (open) {
+      document.body.style.overflow = "";
+      window.__lenis?.start();
+      setOpen(false);
+    }
     document.getElementById("main")?.focus({ preventScroll: true });
     scrollToId(id);
   };
